@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>MISCLIPS - Prueba</title>
+</head>
+<body>
+
+  <h1>MISCLIPS 🎥</h1>
+
+  <video id="video" width="600" controls>
+    <source src="https://ia801504.us.archive.org/1/items/WCH25wom/videos/WCH%20Final%20phase%20%28Bangkok%29/20250906_wch25_61_1-2_japan_Turkey/JPNvsTUR.mp4" type="video/mp4">
+    Tu navegador no soporta video.
+  </video>
+
+  <br><br>
+
+  <label>Inicio (segundos):</label>
+  <input type="number" id="start" value="10">
+
+  <label>Fin (segundos):</label>
+  <input type="number" id="end" value="20">
+
+  <button onclick="playClip()">Reproducir clip</button>
+
+  <script>
+    const video = document.getElementById("video");
+
+    function playClip() {
+      const start = parseFloat(document.getElementById("start").value);
+      const end = parseFloat(document.getElementById("end").value);
+
+      video.currentTime = start;
+      video.play();
+
+      const interval = setInterval(() => {
+        if (video.currentTime >= end) {
+          video.pause();
+          clearInterval(interval);
+        }
+      }, 100);
+    }
+  </script>
+
+</body>
+</html>
